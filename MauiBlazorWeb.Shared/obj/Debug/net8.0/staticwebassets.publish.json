@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "RhcXVCQAgkIqrROOb3GD3sxAaWGX9eCaSUNG9IKghDE=",
+  "Source": "MauiBlazorWeb.Shared",
+  "BasePath": "_content/MauiBlazorWeb.Shared",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

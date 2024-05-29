@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MauiBlazorWeb.Shared.props" />
+</Project>
