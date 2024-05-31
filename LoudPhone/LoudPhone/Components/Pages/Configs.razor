@@ -8,10 +8,18 @@
 <h1>Configurações</h1>
 
 <div class="container mt-4">
+
+    @if (showSuccessNotification)
+    {
+        <div class="alert alert-success alert-dismissible fade show fixed-bottom m-4" role="alert">
+            Intervalo silencioso atualizado com sucesso!
+        </div>
+    }
+
     <div class="row mb-3">
         <div class="col-md-6">
-            <label for="silentInterval" class="form-label">Intervalo Silencioso Padrão (minutos)</label>
-            <input type="number" style="width: 80px" class="form-control" id="silentInterval" @bind="silentInterval" min="1" />
+            <label for="ViewModel.SilentInterval" class="form-label">Intervalo Silencioso Padrão (minutos)</label>
+            <input type="number" style="width: 67px" class="form-control" id="ViewModel.SilentInterval" @bind="ViewModel.SilentInterval" min="1" />
         </div>
     </div>
     <div class="row">
@@ -38,8 +46,8 @@
     </div>
     <div class="row mt-3">
         <div class="col">
-            <ul class="list-group">
-                @foreach (var todo in CurrentDayTodos)
+            <ul class="list-group" style="width: 255px">
+                @foreach (var todo in ViewModel.Todos)
                 {
                     @if (todo.DayOfWeek == SelectedDayOfWeek) {
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -67,11 +75,11 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="startTimeInput" class="form-label">Hora Inicial:</label>
-                    <input type="time" style="width: 80px" class="form-control" id="startTimeInput" @bind="newTodoStartTime">
+                    <input type="time" style="width: 100px" class="form-control" id="startTimeInput" @bind="newTodoStartTime">
                 </div>
                 <div class="mb-3">
                     <label for="endTimeInput" class="form-label">Hora Final:</label>
-                    <input type="time" style="width: 80px" class="form-control" id="endTimeInput" @bind="newTodoEndTime">
+                    <input type="time" style="width: 100px" class="form-control" id="endTimeInput" @bind="newTodoEndTime">
                 </div>
             </div>
             <div class="modal-footer">
@@ -90,14 +98,16 @@
 @code {
 
     private Dictionary<int, char> DaysOfWeek = new() { { 1, 'D' }, { 2, 'S' }, { 3, 'T' }, { 4, 'Q' }, { 5, 'Q' }, { 6, 'S' }, { 7, 'S' } };
-    private List<Todo> CurrentDayTodos = new();
     private int SelectedDayOfWeek = 1;
     private DateTime newTodoStartTime;
     private DateTime newTodoEndTime;
 
     private string modalDisplay = "none;";
     private string modalClass = string.Empty;
-    private bool showBackdrop = false;    
+    private bool showBackdrop = false;
+    private bool showSuccessNotification = false;
+    private Timer? notificationTimer;
+
 
     protected override void OnInitialized()
     {
@@ -111,12 +121,6 @@
 
     private void LoadTodosForSelectedDay()
     {
-
-        CurrentDayTodos.Clear();
-
-        CurrentDayTodos.Add(new Todo { DayOfWeek = 1, StartTime = new DateTime(2024, 5, 27, 8, 0, 0), EndTime = new DateTime(2024, 5, 27, 10, 0, 0) });
-        CurrentDayTodos.Add(new Todo { DayOfWeek = 1, StartTime = new DateTime(2024, 5, 27, 13, 0, 0), EndTime = new DateTime(2024, 5, 27, 15, 0, 0) });
-
         this.StateHasChanged();
     }
 
@@ -137,8 +141,11 @@
 
     private void AddTodo()
     {
-
-        CurrentDayTodos.Add(new Todo { DayOfWeek = SelectedDayOfWeek, StartTime = newTodoStartTime, EndTime = newTodoEndTime });
+        ViewModel.Todos.Add(new Todo { 
+            DayOfWeek = SelectedDayOfWeek, 
+            StartTime = newTodoStartTime, 
+            EndTime = newTodoEndTime 
+        });
         Close();
     }
 
@@ -151,26 +158,44 @@
 
     private void DeleteTodo(Todo todo)
     {
-        CurrentDayTodos.Remove(todo);
+        ViewModel.Todos.Remove(todo);
         this.StateHasChanged();
-    }
-
-
-    private int silentInterval;
+    }    
 
     protected override async Task OnInitializedAsync()
     {
         await ViewModel.InitializeAsync();
-        silentInterval = ViewModel.SilentInterval;
+        ViewModel.SilentInterval = ViewModel.SilentInterval;
     }
 
     private async Task UpdateSilentInterval()
     {
-        await ViewModel.UpdateSilentIntervalAsync(silentInterval);
+        await ViewModel.UpdateSilentIntervalAsync(ViewModel.SilentInterval);
+        ShowSuccessNotification();
+    }
+
+    private void ShowSuccessNotification()
+    {
+        showSuccessNotification = true;
+        StateHasChanged();
+
+        // Start a timer to hide the notification after 2 seconds
+        notificationTimer = new System.Threading.Timer(HideSuccessNotification, null, 2000, System.Threading.Timeout.Infinite);
+    }
+
+    private async void HideSuccessNotification(object state)
+    {
+        await InvokeAsync(() =>
+        {
+            showSuccessNotification = false;
+            StateHasChanged();
+        });
+
+        notificationTimer?.Dispose();
     }
 
     public void Dispose()
     {
-        
+        notificationTimer?.Dispose();
     }
 }

@@ -7,11 +7,11 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="loudphone" Publisher="CN=User Name" Version="1.0.0.1" ProcessorArchitecture="x64" />
+  <Identity Name="loudphone" Publisher="CN=Jean Lopes" Version="1.0.0.1" ProcessorArchitecture="x64" />
   <mp:PhoneIdentity PhoneProductId="C450C2D5-939D-484A-A42A-780EF9BDFE89" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>LoudPhone</DisplayName>
-    <PublisherDisplayName>User Name</PublisherDisplayName>
+    <PublisherDisplayName>Jean Lopes</PublisherDisplayName>
     <Logo>appiconStoreLogo.png</Logo>
   </Properties>
   <Dependencies>

@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\workspace\\maui-loud-fone\\LoudPhone\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|d:\\workspace\\maui-loud-fone\\loudphone\\loudphone\\platforms\\windows\\package.appxmanifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|solutionrelative:loudphone\\platforms\\windows\\package.appxmanifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|d:\\workspace\\maui-loud-fone\\loudphone\\loudphone\\components\\pages\\configs.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|solutionrelative:loudphone\\components\\pages\\configs.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|d:\\workspace\\maui-loud-fone\\loudphone\\loudphone\\models\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|solutionrelative:loudphone\\models\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|d:\\workspace\\maui-loud-fone\\loudphone\\loudphone\\viewmodels\\configsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|solutionrelative:loudphone\\viewmodels\\configsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|d:\\workspace\\maui-loud-fone\\loudphone\\loudphone\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|solutionrelative:loudphone\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|d:\\workspace\\maui-loud-fone\\loudphone\\loudphone\\services\\defaultsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|solutionrelative:loudphone\\services\\defaultsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|d:\\workspace\\maui-loud-fone\\loudphone\\loudphone\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9758643C-D334-4A1B-8D72-DC0377F2F8B1}|LoudPhone\\LoudPhone.csproj|solutionrelative:loudphone\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Package.appxmanifest",
-              "DocumentMoniker": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Platforms\\Windows\\Package.appxmanifest",
-              "RelativeDocumentMoniker": "LoudPhone\\Platforms\\Windows\\Package.appxmanifest",
-              "ToolTip": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Platforms\\Windows\\Package.appxmanifest",
-              "RelativeToolTip": "LoudPhone\\Platforms\\Windows\\Package.appxmanifest",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001793|",
-              "WhenOpened": "2024-05-31T13:37:38.81Z",
+              "DocumentIndex": 3,
+              "Title": "DatabaseService.cs",
+              "DocumentMoniker": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Services\\DatabaseService.cs",
+              "RelativeDocumentMoniker": "LoudPhone\\Services\\DatabaseService.cs",
+              "ToolTip": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Services\\DatabaseService.cs",
+              "RelativeToolTip": "LoudPhone\\Services\\DatabaseService.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAwwAsAAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T22:27:43.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConfigsViewModel.cs",
+              "DocumentMoniker": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\ViewModels\\ConfigsViewModel.cs",
+              "RelativeDocumentMoniker": "LoudPhone\\ViewModels\\ConfigsViewModel.cs",
+              "ToolTip": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\ViewModels\\ConfigsViewModel.cs",
+              "RelativeToolTip": "LoudPhone\\ViewModels\\ConfigsViewModel.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:57:15.386Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Todo.cs",
-              "DocumentMoniker": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Models\\Todo.cs",
-              "RelativeDocumentMoniker": "LoudPhone\\Models\\Todo.cs",
-              "ToolTip": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Models\\Todo.cs",
-              "RelativeToolTip": "LoudPhone\\Models\\Todo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAqAAAA",
+              "Title": "DefaultSettings.cs",
+              "DocumentMoniker": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Services\\DefaultSettings.cs",
+              "RelativeDocumentMoniker": "LoudPhone\\Services\\DefaultSettings.cs",
+              "ToolTip": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Services\\DefaultSettings.cs",
+              "RelativeToolTip": "LoudPhone\\Services\\DefaultSettings.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACoAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T01:42:59.259Z"
+              "WhenOpened": "2024-05-31T21:51:23.022Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Configs.razor",
               "DocumentMoniker": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Components\\Pages\\Configs.razor",
               "RelativeDocumentMoniker": "LoudPhone\\Components\\Pages\\Configs.razor",
               "ToolTip": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Components\\Pages\\Configs.razor",
               "RelativeToolTip": "LoudPhone\\Components\\Pages\\Configs.razor",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAAAEkAAAA6AAAA",
+              "ViewState": "AQIAADAAAAAAAAAAAAAQwDcAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-31T01:27:02.54Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Home.razor",
-              "DocumentMoniker": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Components\\Pages\\Home.razor",
-              "RelativeDocumentMoniker": "LoudPhone\\Components\\Pages\\Home.razor",
-              "ToolTip": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\Components\\Pages\\Home.razor",
-              "RelativeToolTip": "LoudPhone\\Components\\Pages\\Home.razor",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAADcAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-31T00:48:42.722Z"
+              "WhenOpened": "2024-05-31T01:27:02.54Z",
+              "EditorCaption": ""
             }
           ]
         }

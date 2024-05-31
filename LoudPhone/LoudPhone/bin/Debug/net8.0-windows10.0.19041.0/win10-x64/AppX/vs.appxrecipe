@@ -9,7 +9,7 @@
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>loudphone</PackageIdentityName>
-    <PackageIdentityPublisher>CN=User Name</PackageIdentityPublisher>
+    <PackageIdentityPublisher>CN=Jean Lopes</PackageIdentityPublisher>
     <IntermediateOutputPath>D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -19,24 +19,24 @@
     <WindowsSdkPath>
     </WindowsSdkPath>
     <LayoutDir>D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
-    <RegisteredManifestChecksum>D2E4A479E84C97E7DBFA9BEAFF113FB0E12FF4B98EBEB28F7644EEBD8B435930</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>loudphone_1.0.0.1_x64__9zz4h110yvjzm</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>loudphone_9zz4h110yvjzm!App</RegisteredUserModeAppID>
+    <RegisteredManifestChecksum>A6104F28477879019D70AA42FB288D8CB6E41452229177415D1C4DA77E00E098</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>loudphone_1.0.0.1_x64__5afgafycjxn48</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>loudphone_5afgafycjxn48!App</RegisteredUserModeAppID>
     <RegisteredPackageID>loudphone</RegisteredPackageID>
-    <RegisteredPackagePublisher>CN=User Name</RegisteredPackagePublisher>
+    <RegisteredPackagePublisher>CN=Jean Lopes</RegisteredPackagePublisher>
     <RegisteredVersion>1.0.0.1</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-05-31T13:59:40.802</Modified>
+      <Modified>2024-05-31T22:38:34.947</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-05-31T13:59:40.629</Modified>
+      <Modified>2024-05-31T14:09:13.167</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\LoudPhone.runtimeconfig.json">
       <PackagePath>LoudPhone.runtimeconfig.json</PackagePath>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\LoudPhone.dll">
       <PackagePath>LoudPhone.dll</PackagePath>
-      <Modified>2024-05-31T13:59:39.202</Modified>
+      <Modified>2024-05-31T22:38:34.649</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>LoudPhone.exe</PackagePath>
-      <Modified>2024-05-31T13:59:39.217</Modified>
+      <Modified>2024-05-31T22:38:34.649</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>

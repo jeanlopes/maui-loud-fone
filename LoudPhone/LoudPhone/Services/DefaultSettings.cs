@@ -29,5 +29,26 @@ namespace LoudPhone.Services
                 Value = interval.ToString()
             });
         }
+
+        public async Task<IEnumerable<Todo>> GetSettingsAsync()
+        {
+            return await _databaseService.GetSettingAsync();
+        }
+
+        public async Task AddSettingsAsync(Todo todo)
+        {
+            if (todo.Id == 0)
+            {
+                var lastId = await _databaseService.GetLastInserted();
+                todo.Id = lastId++;
+            }
+
+            await _databaseService.SaveSettingsAsync(todo);
+        }
+
+        public async Task RemoveTodoAsync(Todo todo)
+        {
+            await _databaseService.RemoveSettingsAsync(todo);
+        }
     }
 }
