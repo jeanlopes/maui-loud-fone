@@ -1,0 +1,176 @@
+﻿@page "/configs"
+@using LoudPhone.Models
+@using LoudPhone.ViewModels
+@inject ConfigsViewModel ViewModel
+
+@implements IDisposable
+
+<h1>Configurações</h1>
+
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="silentInterval" class="form-label">Intervalo Silencioso Padrão (minutos)</label>
+            <input type="number" style="width: 80px" class="form-control" id="silentInterval" @bind="silentInterval" min="1" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-primary" @onclick="UpdateSilentInterval">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Dias da Semana</h2>
+            <div class="btn-group" role="group" aria-label="Dias da Semana">
+                @foreach (var day in DaysOfWeek)
+                {
+                    <button type="button" class="btn btn-secondary @GetButtonClass(day.Key)" @onclick="() => ChangeDayOfWeek(day.Key)">@day.Value</button>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <ul class="list-group">
+                @foreach (var todo in CurrentDayTodos)
+                {
+                    @if (todo.DayOfWeek == SelectedDayOfWeek) {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                @todo.StartTime.ToString("HH:mm") - @todo.EndTime.ToString("HH:mm")
+                            </div>
+                            <button type="button" class="btn btn-danger" @onclick="() => DeleteTodo(todo)">Excluir</button>
+                        </li>
+                    }
+                }
+            </ul>
+            <button type="button" class="btn btn-primary mt-3" @onclick="ShowAddTodoModal">Adicionar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para adicionar novo to-do -->
+<div class="modal @modalClass" id="addTodoModal" tabindex="-1" role="dialog" style="display:@modalDisplay; overflow-y: auto;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTodoModalLabel">Adicionar intervalo</h5>
+                <button type="button" class="btn-close" @onclick="Close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="startTimeInput" class="form-label">Hora Inicial:</label>
+                    <input type="time" style="width: 80px" class="form-control" id="startTimeInput" @bind="newTodoStartTime">
+                </div>
+                <div class="mb-3">
+                    <label for="endTimeInput" class="form-label">Hora Final:</label>
+                    <input type="time" style="width: 80px" class="form-control" id="endTimeInput" @bind="newTodoEndTime">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @onclick="Close" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" @onclick="AddTodo">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (showBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+
+    private Dictionary<int, char> DaysOfWeek = new() { { 1, 'D' }, { 2, 'S' }, { 3, 'T' }, { 4, 'Q' }, { 5, 'Q' }, { 6, 'S' }, { 7, 'S' } };
+    private List<Todo> CurrentDayTodos = new();
+    private int SelectedDayOfWeek = 1;
+    private DateTime newTodoStartTime;
+    private DateTime newTodoEndTime;
+
+    private string modalDisplay = "none;";
+    private string modalClass = string.Empty;
+    private bool showBackdrop = false;    
+
+    protected override void OnInitialized()
+    {
+        LoadTodosForSelectedDay();
+    }
+
+    private string GetButtonClass(int currentDay)
+    {
+        return SelectedDayOfWeek == currentDay ? "active" : string.Empty;
+    }
+
+    private void LoadTodosForSelectedDay()
+    {
+
+        CurrentDayTodos.Clear();
+
+        CurrentDayTodos.Add(new Todo { DayOfWeek = 1, StartTime = new DateTime(2024, 5, 27, 8, 0, 0), EndTime = new DateTime(2024, 5, 27, 10, 0, 0) });
+        CurrentDayTodos.Add(new Todo { DayOfWeek = 1, StartTime = new DateTime(2024, 5, 27, 13, 0, 0), EndTime = new DateTime(2024, 5, 27, 15, 0, 0) });
+
+        this.StateHasChanged();
+    }
+
+    private void ChangeDayOfWeek(int dayOfWeek)
+    {
+        SelectedDayOfWeek = dayOfWeek;
+        this.StateHasChanged();
+    }
+
+    private void ShowAddTodoModal()
+    {
+        newTodoStartTime = DateTime.Now;
+        newTodoEndTime = DateTime.Now.AddHours(1);
+        modalDisplay = "block;";
+        modalClass = "show";
+        showBackdrop = true;
+    }
+
+    private void AddTodo()
+    {
+
+        CurrentDayTodos.Add(new Todo { DayOfWeek = SelectedDayOfWeek, StartTime = newTodoStartTime, EndTime = newTodoEndTime });
+        Close();
+    }
+
+    private void Close()
+    {
+        modalDisplay = "none";
+        modalClass = string.Empty;
+        showBackdrop = false;
+    }
+
+    private void DeleteTodo(Todo todo)
+    {
+        CurrentDayTodos.Remove(todo);
+        this.StateHasChanged();
+    }
+
+
+    private int silentInterval;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ViewModel.InitializeAsync();
+        silentInterval = ViewModel.SilentInterval;
+    }
+
+    private async Task UpdateSilentInterval()
+    {
+        await ViewModel.UpdateSilentIntervalAsync(silentInterval);
+    }
+
+    public void Dispose()
+    {
+        
+    }
+}

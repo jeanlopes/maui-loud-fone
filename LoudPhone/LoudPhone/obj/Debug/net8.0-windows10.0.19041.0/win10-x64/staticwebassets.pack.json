@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\LoudPhone.styles.css",
+      "PackagePath": "staticwebassets\\LoudPhone.styles.css"
+    },
+    {
+      "Id": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "D:\\workspace\\maui-loud-fone\\LoudPhone\\LoudPhone\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.LoudPhone.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.build.LoudPhone.props",
+      "PackagePath": "build\\LoudPhone.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.buildMultiTargeting.LoudPhone.props",
+      "PackagePath": "buildMultiTargeting\\LoudPhone.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\staticwebassets\\msbuild.buildTransitive.LoudPhone.props",
+      "PackagePath": "buildTransitive\\LoudPhone.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

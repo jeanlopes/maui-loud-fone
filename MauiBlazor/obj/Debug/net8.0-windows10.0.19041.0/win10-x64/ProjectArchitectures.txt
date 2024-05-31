@@ -1,1 +1,0 @@
-C:\Users\jeano\workspace\maui-test\MauiBlazor\MauiBlazor.csproj;x64

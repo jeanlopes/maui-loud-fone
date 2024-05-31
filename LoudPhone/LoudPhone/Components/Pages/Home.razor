@@ -1,0 +1,126 @@
+﻿@page "/"
+@using LoudPhone.Interfaces
+@inject IDefaultSettings DefaultSettings
+@inject IAudioManagerService AudioManagerService
+@inject IOpenDontDisturbService OpenDontDisturbService
+@inject ISilentModeService SilentModeService
+
+<div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" @bind="active">
+    <label class="form-check-label" for="flexSwitchCheckDefault">Silencioso temporário Ativado</label>    
+</div>
+<div class="card-body">    
+    @if (active && _isSilent)
+    {
+        <span>Saindo do silencioso em @timeLeft</span>
+    }
+</div>
+<div class="card-body">
+    @if (_isSilent)
+    {
+        <span>No silencioso</span>
+    }
+    else
+    {
+        <span>No alto</span>
+    }
+</div>
+
+<div class="card-body">
+    <button class="btn btn-light" @onclick="OpenDoNotDisturbSettings">
+        Abrir permissões Não Perturbe
+    </button>
+</div>
+
+
+
+@code {
+
+    private bool _isSilent { get; set; }
+    private bool _activeChecked { get; set; }
+    private Timer? _timer;
+    private TimeSpan _timeLeft;
+    private string timeLeft => _timeLeft.ToString(@"mm\:ss");
+
+    private bool active
+    {
+        get => _activeChecked;
+        set
+        {
+            if (_activeChecked != value)
+            {
+                _activeChecked = value;
+                OnActiveCheckedChanged().ConfigureAwait(false);
+            }
+        }
+    }
+
+    private async Task OnActiveCheckedChanged()
+    {
+        if (_activeChecked)
+        {
+            var defaultTime = await DefaultSettings.GetDefaultSilentIntervalAsync();
+            _timeLeft = TimeSpan.FromMinutes(defaultTime);
+            SilentModeService.StartSilentModeService();
+        }
+        else
+        {
+            SilentModeService.StopSilentModeService();
+            _timeLeft = TimeSpan.Zero;
+        }
+        StateHasChanged();
+
+    }
+
+    private void StartTimer()
+    {
+        _timer = new Timer(TimerCallback, null, 1000, 1000);
+    }
+
+    private void StopTimer()
+    {
+        _timer?.Dispose();
+        _timer = null;
+    }
+
+    private void TimerCallback(object state)
+    {
+        if (AudioManagerService.IsSilent())
+        {
+            if (!_isSilent)
+                OnActiveCheckedChanged().ConfigureAwait(false);
+
+            _isSilent = true;
+        }
+        else
+            _isSilent = false;
+
+        // se eu ponho no silencioso com ele ativado
+        if (_isSilent && _activeChecked)
+        {
+            if (_timeLeft.TotalSeconds > 0)
+            {
+                _timeLeft = _timeLeft.Add(TimeSpan.FromSeconds(-1));                
+            }
+            else
+            {
+                AudioManagerService.SetSilent(false);
+            }
+
+        }
+        InvokeAsync(StateHasChanged);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _timeLeft = TimeSpan.Zero;
+        _isSilent = false;
+        StartTimer();
+        await base.OnInitializedAsync();
+    }
+
+    private void OpenDoNotDisturbSettings()
+    {
+        OpenDontDisturbService.OpenDoNotDisturbSettings();
+    }
+}
