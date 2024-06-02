@@ -4,7 +4,7 @@
 [assembly: Dependency(typeof(LoudPhone.MainActivity))]
 namespace LoudPhone
 {
-    public class MainActivity : ISilentModeService
+    public class MainActivity : ISilentModeDaemon
     {
         public void StartSilentModeService()
         {

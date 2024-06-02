@@ -9,23 +9,40 @@ using LoudPhone.Services;
 namespace LoudPhone
 {
     [Service]
-    public class SilentModeService : Service
+    public class SilentModeService : Service, ISilentModeService
     {
         private Timer _timer;
         
         private IAudioManagerService _audioManagerService;
+        private ISilentIntervalService _silentIntervalService;
         private IDefaultSettings _defaultSettings;
-        private DatabaseService _databaseService;
+        private IDatabaseService _databaseService;
         public TimeSpan TimeLeft { private set; get; }
         public bool IsSilent { private set; get; }
+        private bool ItWasOnSilentInterval { get; set; }
 
-        public async override void OnCreate()
+        public SilentModeService()
+        {
+
+        }
+
+        public override void OnCreate()
         {
             base.OnCreate();
-            _audioManagerService = new AudioManagerService();
-            _databaseService = new DatabaseService();
-            _defaultSettings = new DefaultSettings(_databaseService);
-            var defaultTime = await _defaultSettings.GetDefaultSilentIntervalAsync();
+
+            var serviceProvider = MauiApplication.Current.Services;
+            _audioManagerService = serviceProvider.GetRequiredService<IAudioManagerService>();
+            _databaseService = serviceProvider.GetRequiredService<IDatabaseService>();
+            _defaultSettings = serviceProvider.GetRequiredService<IDefaultSettings>();
+            _silentIntervalService = serviceProvider.GetRequiredService<ISilentIntervalService>();
+
+            InitializeService();
+        }
+
+        private void InitializeService()
+        {
+            
+            var defaultTime = _defaultSettings.GetDefaultSilentInterval();
             TimeLeft = TimeSpan.FromMinutes(defaultTime);
             _timer = new Timer(1000);
             _timer.Elapsed += OnTimedEvent;
@@ -44,22 +61,31 @@ namespace LoudPhone
             base.OnDestroy();
         }
 
-        private async void OnTimedEvent(object sender, ElapsedEventArgs e)
+        private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
+            if (_silentIntervalService.IsOnSilentInterval() && !IsSilent)
+            {
+                _audioManagerService.SetSilent(true);
+                IsSilent = true;
+                ItWasOnSilentInterval = true;
+                return;
+            }
+
+            if (ItWasOnSilentInterval)
+            {
+                _audioManagerService.SetSilent(false);
+                ItWasOnSilentInterval = false;
+            }
+
             if (_audioManagerService.IsSilent())
             {
                 if (!IsSilent)
                 {
-                    var defaultTime = await _defaultSettings.GetDefaultSilentIntervalAsync();
+                    var defaultTime = _defaultSettings.GetDefaultSilentInterval();
                     TimeLeft = TimeSpan.FromMinutes(defaultTime);
                     IsSilent = true;
                 }
-            }
-            else
-                IsSilent = false;
 
-            if (IsSilent)
-            {
                 if (TimeLeft.TotalSeconds > 0)
                 {
                     TimeLeft = TimeLeft.Add(TimeSpan.FromSeconds(-1));
@@ -67,8 +93,12 @@ namespace LoudPhone
                 else
                 {
                     _audioManagerService.SetSilent(false);
+                    IsSilent = false;
                 }
-
+            }
+            else
+            {
+                IsSilent = false;
             }
         }
 
@@ -76,5 +106,6 @@ namespace LoudPhone
         {
             return null;
         }
+
     }
 }

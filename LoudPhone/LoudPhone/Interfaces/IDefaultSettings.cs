@@ -4,13 +4,13 @@ namespace LoudPhone.Interfaces
 {
     public interface IDefaultSettings
     {
-        Task<int> GetDefaultSilentIntervalAsync();
-        Task SetDefaultSilentIntervalAsync(int interval);
+        int GetDefaultSilentInterval();
+        void SetDefaultSilentInterval(int interval);
 
-        Task<IEnumerable<Todo>> GetSettingsAsync();
+        IEnumerable<Todo> GetSettings();
 
-        Task AddSettingsAsync(Todo todo);
+        void AddSettings(Todo todo);
 
-        Task RemoveTodoAsync(Todo todo);
+        void RemoveTodo(Todo todo);
     }
 }

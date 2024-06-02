@@ -1,48 +1,50 @@
 ﻿using SQLite;
 using LoudPhone.Models;
+using LoudPhone.Interfaces;
 
 namespace LoudPhone.Services
 {
-    public class DatabaseService
+    public class DatabaseService: IDatabaseService
     {
-        private readonly SQLiteAsyncConnection _database;
+        private SQLiteConnection _database;
 
         public DatabaseService()
         {
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, "appsettings.db");
-            _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<AppSettings>().Wait();
-            _database.CreateTableAsync<Todo>().Wait();
+            _database = new SQLiteConnection(dbPath);
+            _database.CreateTable<AppSettings>();
+            _database.CreateTable<Todo>();
+        }        
+
+        public int SaveSettings(Todo todo)
+        {
+            return _database.InsertOrReplace(todo);
         }
 
-        public async Task<int> SaveSettingsAsync(Todo todo)
+        public IEnumerable<Todo> GetSetting()
         {
-            return await _database.InsertOrReplaceAsync(todo);
+            return _database.Table<Todo>().ToList();
         }
 
-        public async Task<IEnumerable<Todo>> GetSettingAsync()
+        public int GetLastInserted()
         {
-            return await _database.Table<Todo>().ToListAsync();
+            return _database.Table<Todo>().OrderByDescending(t => t.Id).FirstOrDefault().Id;
         }
 
-        public async Task<int> GetLastInserted()
+        public int SaveSetting(AppSettings setting)
         {
-            return (await _database.Table<Todo>().OrderByDescending(t => t.Id).FirstOrDefaultAsync()).Id;
+            return _database.InsertOrReplace(setting);
         }
 
-        public async Task<int> SaveSettingAsync(AppSettings setting)
+        public AppSettings GetSetting(string key)
         {
-            return await _database.InsertOrReplaceAsync(setting);
-        }
 
-        public async Task<AppSettings> GetSettingAsync(string key)
-        {
-            return await _database.Table<AppSettings>().FirstOrDefaultAsync(s => s.Key == key);
-        }
+            return _database.Table<AppSettings>().FirstOrDefault(s => s.Key == key);
+        }            
 
-        public async Task RemoveSettingsAsync(Todo todo)
+        public void RemoveSettings(Todo todo)
         {
-            await _database.Table<Todo>().DeleteAsync(t => t.Id == todo.Id);
+            _database.Table<Todo>().FirstOrDefault(t => t.Id == todo.Id);
         }
     }
 }

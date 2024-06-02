@@ -16,17 +16,18 @@ namespace LoudPhone
             | ConfigChanges.SmallestScreenSize
             | ConfigChanges.Density
     )]
-    public class MainActivity : MauiAppCompatActivity, ISilentModeService
+    public class MainActivity : MauiAppCompatActivity, ISilentModeDaemon
     {
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
         }
     
         public void StartSilentModeService()
-        {
+        {            
             var intent = new Intent(Platform.CurrentActivity, typeof(SilentModeService));
-            Platform.CurrentActivity.StartService(intent);
+            Platform.CurrentActivity.StartService(intent);            
         }
 
         public void StopSilentModeService()

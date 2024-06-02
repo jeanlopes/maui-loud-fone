@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoudPhone")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+7b105f9e49a8069592555c09b01aec3fbfa98768")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+3ece8306f49b4318f4edf4371aa6a1e266ef33b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoudPhone")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoudPhone")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

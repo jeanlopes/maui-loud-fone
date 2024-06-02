@@ -111,17 +111,14 @@
 
     protected override void OnInitialized()
     {
-        LoadTodosForSelectedDay();
+        ViewModel.Initialize();
+        ViewModel.SilentInterval = ViewModel.SilentInterval;
+        this.StateHasChanged();
     }
 
     private string GetButtonClass(int currentDay)
     {
         return SelectedDayOfWeek == currentDay ? "active" : string.Empty;
-    }
-
-    private void LoadTodosForSelectedDay()
-    {
-        this.StateHasChanged();
     }
 
     private void ChangeDayOfWeek(int dayOfWeek)
@@ -160,17 +157,11 @@
     {
         ViewModel.Todos.Remove(todo);
         this.StateHasChanged();
-    }    
-
-    protected override async Task OnInitializedAsync()
-    {
-        await ViewModel.InitializeAsync();
-        ViewModel.SilentInterval = ViewModel.SilentInterval;
     }
 
-    private async Task UpdateSilentInterval()
+    private void UpdateSilentInterval()
     {
-        await ViewModel.UpdateSilentIntervalAsync(ViewModel.SilentInterval);
+        ViewModel.UpdateSilentInterval(ViewModel.SilentInterval);
         ShowSuccessNotification();
     }
 

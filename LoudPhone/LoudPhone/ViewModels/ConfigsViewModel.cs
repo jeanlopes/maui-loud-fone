@@ -4,37 +4,31 @@ using LoudPhone.Models;
 
 namespace LoudPhone.ViewModels
 {
-    public class ConfigsViewModel
+    public class ConfigsViewModel(IDefaultSettings defaultSettings)
     {
-        private readonly IDefaultSettings _defaultSettings;
-
-        public ConfigsViewModel(IDefaultSettings defaultSettings)
-        {
-            _defaultSettings = defaultSettings;
-            Todos = [];
-        }
+        private readonly IDefaultSettings _defaultSettings = defaultSettings;
 
         public int SilentInterval { get; set; }
-        public List<Todo> Todos { get; set; }
+        public List<Todo> Todos { get; set; } = [];
 
 
-        public async Task InitializeAsync()
+        public void Initialize()
         {
-            SilentInterval = await _defaultSettings.GetDefaultSilentIntervalAsync();
-            Todos = (await _defaultSettings.GetSettingsAsync()).ToList();
+            SilentInterval = _defaultSettings.GetDefaultSilentInterval();
+            Todos = _defaultSettings.GetSettings().ToList();
         }
 
-        public async Task UpdateSilentIntervalAsync(int interval)
+        public void UpdateSilentInterval(int interval)
         {
-            await _defaultSettings.SetDefaultSilentIntervalAsync(interval);
+            _defaultSettings.SetDefaultSilentInterval(interval);
             SilentInterval = interval;
         }
 
-        public async Task SaveSettings()
+        public void SaveSettings()
         {
             foreach (var todo in Todos)
             {
-                await _defaultSettings.AddSettingsAsync(todo);
+                _defaultSettings.AddSettings(todo);
             }
         }
     }

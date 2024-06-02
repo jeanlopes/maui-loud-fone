@@ -1,1 +1,0 @@
-D:\workspace\maui-loud-fone\LoudPhone\LoudPhone\LoudPhone.csproj;x64
